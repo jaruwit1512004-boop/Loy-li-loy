@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สุขสันต์วันลอยกระทง 🌕✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            /* แบ่งสัดส่วน ท้องฟ้า 45% / แม่น้ำ 55% */
+            background: linear-gradient(to bottom, #090d16 0%, #162238 45%, #0a192f 45%, #040b14 100%);
+            height: 100vh;
+            overflow: hidden;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* พระจันทร์เต็มดวง */
+        .moon {
+            position: absolute;
+            top: 25px;
+            right: 12%;
+            width: 75px;
+            height: 75px;
+            background: #fff8d6;
+            border-radius: 50%;
+            box-shadow: 0 0 35px #ffe875, 0 0 70px #ffaa00;
+            z-index: 1;
+        }
+
+        /* ดาวระยิบระยับ */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 45%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 140px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 250px 40px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 380px 90px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 500px 20px, #ffe875, rgba(0,0,0,0));
+            background-size: 600px 200px;
+            animation: twinkle 4s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* กล่องข้อความด้านบน (ขยับขึ้นบน + ย่อขนาดให้เล็กลง) */
+        .header-box {
+            z-index: 20;
+            margin-top: 15px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            padding: 12px 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 90%;
+            width: 310px;
+        }
+
+        h1 {
+            font-size: 1.15rem;
+            color: #ffd166;
+            margin-bottom: 6px;
+        }
+
+        input {
+            width: 100%;
+            padding: 7px 12px;
+            margin: 4px 0;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.92);
+            color: #333;
+            font-size: 0.85rem;
+        }
+
+        button {
+            margin-top: 6px;
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #ff9f1c, #ffbf69);
+            color: #1d1e2c;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 12px rgba(255, 191, 105, 0.6);
+        }
+
+        /* แม่น้ำ (เอา overflow: hidden ออก เพื่อไม่ให้ตัดป้ายคำอธิษฐาน) */
+        .river {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 55%;
+            z-index: 5;
+        }
+
+        /* คลื่นน้ำเบาๆ */
+        .wave {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .wave::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                transparent 0%,
+                rgba(255, 255, 255, 0.03) 5%,
+                transparent 10%
+            );
+            animation: waveMove 10s linear infinite;
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ตัวกระทงที่ลอย */
+        .krathong-item {
+            position: absolute;
+            left: -180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: floatAcross 18s linear forwards, bobbing 2.5s ease-in-out infinite alternate;
+            z-index: 10;
+        }
+
+        .wish-tag {
+            background: rgba(0, 0, 0, 0.72);
+            color: #fff8d6;
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-bottom: 4px;
+            border: 1px solid rgba(255, 209, 102, 0.45);
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .wish-tag strong {
+            color: #ffd166;
+            display: block;
+            font-size: 0.85rem;
+        }
+
+        /* กราฟิกกระทง */
+        .krathong-graphic {
+            position: relative;
+            font-size: 3.2rem;
+            line-height: 1;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+        }
+
+        .candle-glow {
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 22px;
+            background: radial-gradient(circle, rgba(255,230,100,0.95) 0%, rgba(255,140,0,0) 70%);
+            border-radius: 50%;
+            animation: flicker 0.5s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(0.9); opacity: 0.8; }
+            100% { transform: translateX(-50%) scale(1.2); opacity: 1; }
+        }
+
+        @keyframes floatAcross {
+            0% { left: -180px; }
+            100% { left: 110%; }
+        }
+
+        @keyframes bobbing {
+            0% { transform: translateY(0px) rotate(-2deg); }
+            100% { transform: translateY(-8px) rotate(2deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+    <div class="moon"></div>
+
+    <div class="header-box">
+        <h1>🌕 ลอยกระทง ลอยทำไมวะ 💛</h1>
+        <input type="text" id="senderName" placeholder="ชื่อของเรา">
+        <input type="text" id="wishText" placeholder="พิมพ์คำอธิษฐานตรงนี้...">
+        <button onclick="releaseKrathong()">✨ กดปล่อยกระทง ✨</button>
+    </div>
+
+    <div class="river" id="river">
+        <div class="wave"></div>
+    </div>
+
+    <script>
+        function releaseKrathong() {
+            const nameInput = document.getElementById('senderName');
+            const wishInput = document.getElementById('wishText');
+            
+            const name = nameInput.value.trim() || "เราสองคน 💕";
+            const wish = wishInput.value.trim() || "ขอให้รักกันไปนานๆ มีความสุขมากๆ นะ";
+
+            const river = document.getElementById('river');
+            
+            const krathong = document.createElement('div');
+            krathong.className = 'krathong-item';
+
+            // สุ่มระดับความสูงในแม่น้ำ (10% ถึง 58% เพื่อไม่ให้ลอยสูงไปชนกล่องด้านบน)
+            const randomBottom = Math.floor(Math.random() * 48) + 10;
+            krathong.style.bottom = randomBottom + '%';
+
+            const randomDuration = Math.floor(Math.random() * 6) + 16;
+            krathong.style.animationDuration = `${randomDuration}s, 2.5s`;
+
+            krathong.innerHTML = `
+                <div class="wish-tag">
+                    <strong>${escapeHTML(name)}</strong>
+                    "${escapeHTML(wish)}"
+                </div>
+                <div class="krathong-graphic">
+                    <div class="candle-glow"></div>
+                    🪷
+                </div>
+            `;
+
+            river.appendChild(krathong);
+            wishInput.value = '';
+
+            setTimeout(() => {
+                krathong.remove();
+            }, randomDuration * 1000);
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag]));
+        }
+
+        window.onload = () => {
+            setTimeout(() => {
+                const river = document.getElementById('river');
+                const welcomeKrathong = document.createElement('div');
+                welcomeKrathong.className = 'krathong-item';
+                welcomeKrathong.style.bottom = '35%';
+                welcomeKrathong.innerHTML = `
+                    <div class="wish-tag">
+                        <strong>สุขสันต์วันลอยกระทง 💛</strong>
+                        "กูมาเก็บเหรียญ"
+                    </div>
+                    <div class="krathong-graphic">
+                        <div class="candle-glow"></div>
+                        🪷
+                    </div>
+                `;
+                river.appendChild(welcomeKrathong);
+            }, 500);
+        };
+    </script>
+
+</body>
+</html>
